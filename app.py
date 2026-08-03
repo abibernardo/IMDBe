@@ -1,10 +1,45 @@
 import streamlit as st
+import pandas as pd
 
 st.set_page_config(
     page_title="IMDBe",
     page_icon="🎬",
     layout="wide"
 )
+
+
+# ============================================================
+# DADOS
+# ============================================================
+
+@st.cache_data
+def carregar_lista(url):
+
+    df = pd.read_csv(url)
+
+    return (
+        df[["Title", "Year", "IMDb Rating", "Genres", "Your Rating"]]
+        .sort_values("Title")
+        .reset_index(drop=True)
+    )
+
+
+df_finalizadas = carregar_lista(
+    "https://raw.githubusercontent.com/abibernardo/IMDBe/refs/heads/main/series/finalizadas.csv"
+)
+
+df_assistindo = carregar_lista(
+    "https://raw.githubusercontent.com/abibernardo/IMDBe/refs/heads/main/series/assistindo.csv"
+)
+
+df_abandonadas = carregar_lista(
+    "https://raw.githubusercontent.com/abibernardo/IMDBe/refs/heads/main/series/abandonadas.csv"
+)
+
+
+# ============================================================
+# CSS
+# ============================================================
 
 st.markdown("""
 <style>
@@ -14,45 +49,33 @@ footer {visibility:hidden;}
 header {visibility:hidden;}
 
 .block-container{
-    padding-top:2rem;
     max-width:1300px;
+    padding-top:2rem;
 }
-
-html, body, [data-testid="stAppViewContainer"]{
-    background:#0f1117;
-    color:white;
-}
-
-/* Título */
 
 .title{
     text-align:center;
-    font-size:4rem;
+    font-size:60px;
     font-weight:800;
-    letter-spacing:2px;
 }
 
 .subtitle{
     text-align:center;
-    color:#AAAAAA;
-    margin-bottom:50px;
+    color:gray;
+    margin-bottom:40px;
 }
 
-/* Banner */
-
 .hero{
-    height:330px;
-    border-radius:20px;
-    background:#1d1f29;
+    height:320px;
+    border-radius:18px;
+    background:#232323;
     display:flex;
     justify-content:center;
     align-items:center;
-    font-size:28px;
-    color:#777;
+    color:gray;
+    font-size:30px;
     margin-bottom:50px;
 }
-
-/* Títulos */
 
 .section{
     font-size:30px;
@@ -61,28 +84,24 @@ html, body, [data-testid="stAppViewContainer"]{
     margin-bottom:20px;
 }
 
-/* Poster */
-
 .poster{
 
-    border-radius:15px;
-    background:#232632;
     aspect-ratio:2/3;
+    border-radius:12px;
+    background:#2b2b2b;
 
     display:flex;
     justify-content:center;
     align-items:center;
 
-    color:#666;
-    font-size:20px;
+    color:gray;
     margin-bottom:10px;
 }
 
 .name{
 
     text-align:center;
-    font-size:18px;
-    font-weight:600;
+    font-weight:bold;
 
 }
 
@@ -94,107 +113,159 @@ html, body, [data-testid="stAppViewContainer"]{
 
 }
 
+.review{
+
+    border:1px solid #333;
+    border-radius:15px;
+    padding:18px;
+    margin-bottom:20px;
+
+}
+
+.review h3{
+
+    margin-top:0;
+
+}
+
 </style>
 """, unsafe_allow_html=True)
 
 
-st.markdown('<div class="title">IMDBe</div>', unsafe_allow_html=True)
+# ============================================================
+# CABEÇALHO
+# ============================================================
+
+st.markdown("<div class='title'>IMDBe</div>", unsafe_allow_html=True)
+
 st.markdown(
-    '<div class="subtitle">The personal movie & TV archive of Be</div>',
-    unsafe_allow_html=True
+"<div class='subtitle'>The personal movie & TV archive of Be</div>",
+unsafe_allow_html=True
 )
 
 st.markdown(
-    '<div class="hero">BANNER DA SÉRIE EM DESTAQUE</div>',
-    unsafe_allow_html=True
+"<div class='hero'>BANNER DA SÉRIE EM DESTAQUE</div>",
+unsafe_allow_html=True
 )
 
-st.markdown('<div class="section">⭐ Favorites</div>',
-unsafe_allow_html=True)
 
-cols = st.columns(5)
+# ============================================================
+# FUNÇÃO DOS CARDS
+# ============================================================
 
-for c in cols:
+def mostrar_cards(df):
 
-    with c:
+    N_COLS = 5
 
-        st.markdown(
-            '<div class="poster">Poster</div>',
-            unsafe_allow_html=True
-        )
+    for i in range(0, len(df), N_COLS):
 
-        st.markdown(
-            '<div class="name">Breaking Bad</div>',
-            unsafe_allow_html=True
-        )
+        cols = st.columns(N_COLS)
 
-        st.markdown(
-            '<div class="rating">★★★★★</div>',
-            unsafe_allow_html=True
-        )
+        for col, (_, serie) in zip(cols, df.iloc[i:i+N_COLS].iterrows()):
+
+            with col:
+
+                st.markdown(
+                    "<div class='poster'>Poster</div>",
+                    unsafe_allow_html=True
+                )
+
+                st.markdown(
+                    f"<div class='name'>{serie['Title']}</div>",
+                    unsafe_allow_html=True
+                )
+
+                nota = serie["Your Rating"]
+
+                if pd.notna(nota):
+
+                    st.markdown(
+                        f"<div class='rating'>{int(nota)}/10</div>",
+                        unsafe_allow_html=True
+                    )
+
+                else:
+
+                    st.markdown(
+                        "<div class='rating'>—</div>",
+                        unsafe_allow_html=True
+                    )
 
 
-st.markdown('<div class="section">📺 TV Shows</div>',
-unsafe_allow_html=True)
+# ============================================================
+# ACOMPANHANDO
+# ============================================================
 
-cols = st.columns(5)
+st.markdown(
+"<div class='section'>📺 Acompanhando</div>",
+unsafe_allow_html=True
+)
 
-series = [
+mostrar_cards(df_assistindo)
+
+
+# ============================================================
+# IMDBE RECOMENDA
+# ============================================================
+
+st.markdown(
+"<div class='section'>⭐ IMDBe recomenda</div>",
+unsafe_allow_html=True
+)
+
+for serie in [
+    "Breaking Bad",
     "Dark",
-    "Severance",
-    "Succession",
-    "The Bear",
-    "Lost"
-]
+    "Severance"
+]:
 
-for c,nome in zip(cols,series):
+    col1, col2 = st.columns([1,4])
 
-    with c:
+    with col1:
 
         st.markdown(
-            '<div class="poster">Poster</div>',
+            "<div class='poster'>Poster</div>",
             unsafe_allow_html=True
         )
 
+    with col2:
+
         st.markdown(
-            f'<div class="name">{nome}</div>',
+            f"""
+            <div class='review'>
+            <h3>{serie}</h3>
+
+            Aqui ficará um pequeno texto escrito por você
+            explicando por que recomenda essa série.
+
+            Pode ter uma ou duas linhas ou até um pequeno
+            parágrafo.
+
+            </div>
+            """,
             unsafe_allow_html=True
         )
 
-        st.markdown(
-            '<div class="rating">★★★★☆</div>',
-            unsafe_allow_html=True
-        )
+
+# ============================================================
+# FINALIZADAS
+# ============================================================
+
+st.markdown(
+"<div class='section'>✅ Finalizadas</div>",
+unsafe_allow_html=True
+)
+
+mostrar_cards(df_finalizadas)
 
 
-st.markdown('<div class="section">🎬 Movies</div>',
-unsafe_allow_html=True)
+# ============================================================
+# ABANDONADAS
+# ============================================================
 
-cols = st.columns(5)
+st.markdown(
+"<div class='section'>🛑 Abandonadas</div>",
+unsafe_allow_html=True
+)
 
-filmes = [
-    "Interstellar",
-    "Whiplash",
-    "Parasite",
-    "The Prestige",
-    "Arrival"
-]
-
-for c,nome in zip(cols,filmes):
-
-    with c:
-
-        st.markdown(
-            '<div class="poster">Poster</div>',
-            unsafe_allow_html=True
-        )
-
-        st.markdown(
-            f'<div class="name">{nome}</div>',
-            unsafe_allow_html=True
-        )
-
-        st.markdown(
-            '<div class="rating">★★★★★</div>',
-            unsafe_allow_html=True
-        )
+mostrar_cards(df_abandonadas)
