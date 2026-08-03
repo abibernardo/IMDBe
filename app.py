@@ -1,149 +1,200 @@
 import streamlit as st
-import pandas as pd
-
-# =====================================================
-# Configuração
-# =====================================================
 
 st.set_page_config(
-    page_title="Meu Catálogo",
+    page_title="IMDBe",
     page_icon="🎬",
     layout="wide"
 )
 
-URL = "https://raw.githubusercontent.com/abibernardo/IMDBe/refs/heads/main/user_tv_show_data.csv"
+st.markdown("""
+<style>
 
-df = pd.read_csv(URL)
+#MainMenu {visibility:hidden;}
+footer {visibility:hidden;}
+header {visibility:hidden;}
 
-df = (
-    df.sort_values("tv_show_name")
-      .drop_duplicates("tv_show_name")
-      .reset_index(drop=True)
+.block-container{
+    padding-top:2rem;
+    max-width:1300px;
+}
+
+html, body, [data-testid="stAppViewContainer"]{
+    background:#0f1117;
+    color:white;
+}
+
+/* Título */
+
+.title{
+    text-align:center;
+    font-size:4rem;
+    font-weight:800;
+    letter-spacing:2px;
+}
+
+.subtitle{
+    text-align:center;
+    color:#AAAAAA;
+    margin-bottom:50px;
+}
+
+/* Banner */
+
+.hero{
+    height:330px;
+    border-radius:20px;
+    background:#1d1f29;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:28px;
+    color:#777;
+    margin-bottom:50px;
+}
+
+/* Títulos */
+
+.section{
+    font-size:30px;
+    font-weight:bold;
+    margin-top:40px;
+    margin-bottom:20px;
+}
+
+/* Poster */
+
+.poster{
+
+    border-radius:15px;
+    background:#232632;
+    aspect-ratio:2/3;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    color:#666;
+    font-size:20px;
+    margin-bottom:10px;
+}
+
+.name{
+
+    text-align:center;
+    font-size:18px;
+    font-weight:600;
+
+}
+
+.rating{
+
+    text-align:center;
+    color:#FFD54F;
+    margin-bottom:25px;
+
+}
+
+</style>
+""", unsafe_allow_html=True)
+
+
+st.markdown('<div class="title">IMDBe</div>', unsafe_allow_html=True)
+st.markdown(
+    '<div class="subtitle">The personal movie & TV archive of Be</div>',
+    unsafe_allow_html=True
 )
 
-# =====================================================
-# Session State
-# =====================================================
+st.markdown(
+    '<div class="hero">BANNER DA SÉRIE EM DESTAQUE</div>',
+    unsafe_allow_html=True
+)
 
-if "selected_show" not in st.session_state:
-    st.session_state.selected_show = None
+st.markdown('<div class="section">⭐ Favorites</div>',
+unsafe_allow_html=True)
 
-# =====================================================
-# Sidebar
-# =====================================================
+cols = st.columns(5)
 
-st.sidebar.title("🎬 Meu Catálogo")
+for c in cols:
 
-if st.sidebar.checkbox("Somente favoritas"):
-    df = df[df["is_favorited"] == 1]
+    with c:
 
-if st.sidebar.checkbox("Somente acompanhando"):
-    df = df[df["is_followed"] == 1]
-
-busca = st.sidebar.text_input("Pesquisar")
-
-if busca:
-    df = df[
-        df["tv_show_name"].str.contains(
-            busca,
-            case=False,
-            na=False
-        )
-    ]
-
-# =====================================================
-# Métricas
-# =====================================================
-
-st.title("🎬 Meu Catálogo")
-
-c1, c2, c3 = st.columns(3)
-
-c1.metric("Séries", len(df))
-c2.metric("Favoritas", int(df.is_favorited.sum()))
-c3.metric("Episódios vistos", int(df.nb_episodes_seen.sum()))
-
-st.divider()
-
-# =====================================================
-# Layout
-# =====================================================
-
-left, right = st.columns([3, 2])
-
-# =====================================================
-# Catálogo
-# =====================================================
-
-with left:
-
-    cols = st.columns(3)
-
-    for i, (_, row) in enumerate(df.iterrows()):
-
-        with cols[i % 3]:
-
-            st.image(
-                "https://placehold.co/300x450?text=Poster",
-                use_container_width=True
-            )
-
-            st.markdown(
-                f"**{row['tv_show_name']}**"
-            )
-
-            st.caption(
-                f"{row['nb_episodes_seen']} episódios vistos"
-            )
-
-            if row["is_favorited"]:
-                st.write("❤️ Favorita")
-
-            if st.button(
-                "Detalhes",
-                key=row["tv_show_id"]
-            ):
-                st.session_state.selected_show = row
-
-# =====================================================
-# Painel lateral
-# =====================================================
-
-with right:
-
-    st.subheader("Detalhes")
-
-    if st.session_state.selected_show is None:
-
-        st.info(
-            "Clique em uma série."
+        st.markdown(
+            '<div class="poster">Poster</div>',
+            unsafe_allow_html=True
         )
 
-    else:
-
-        s = st.session_state.selected_show
-
-        st.image(
-            "https://placehold.co/500x750?text=Poster",
-            use_container_width=True
+        st.markdown(
+            '<div class="name">Breaking Bad</div>',
+            unsafe_allow_html=True
         )
 
-        st.header(
-            s["tv_show_name"]
+        st.markdown(
+            '<div class="rating">★★★★★</div>',
+            unsafe_allow_html=True
         )
 
-        st.write(
-            f"**Episódios vistos:** {s['nb_episodes_seen']}"
+
+st.markdown('<div class="section">📺 TV Shows</div>',
+unsafe_allow_html=True)
+
+cols = st.columns(5)
+
+series = [
+    "Dark",
+    "Severance",
+    "Succession",
+    "The Bear",
+    "Lost"
+]
+
+for c,nome in zip(cols,series):
+
+    with c:
+
+        st.markdown(
+            '<div class="poster">Poster</div>',
+            unsafe_allow_html=True
         )
 
-        st.write(
-            f"**Favorita:** {'Sim' if s['is_favorited'] else 'Não'}"
+        st.markdown(
+            f'<div class="name">{nome}</div>',
+            unsafe_allow_html=True
         )
 
-        st.write(
-            f"**Acompanhando:** {'Sim' if s['is_followed'] else 'Não'}"
+        st.markdown(
+            '<div class="rating">★★★★☆</div>',
+            unsafe_allow_html=True
         )
 
-        st.button(
-            "Marcar episódio (em breve)"
+
+st.markdown('<div class="section">🎬 Movies</div>',
+unsafe_allow_html=True)
+
+cols = st.columns(5)
+
+filmes = [
+    "Interstellar",
+    "Whiplash",
+    "Parasite",
+    "The Prestige",
+    "Arrival"
+]
+
+for c,nome in zip(cols,filmes):
+
+    with c:
+
+        st.markdown(
+            '<div class="poster">Poster</div>',
+            unsafe_allow_html=True
+        )
+
+        st.markdown(
+            f'<div class="name">{nome}</div>',
+            unsafe_allow_html=True
+        )
+
+        st.markdown(
+            '<div class="rating">★★★★★</div>',
+            unsafe_allow_html=True
         )
