@@ -211,6 +211,68 @@ header {visibility:hidden;}
     margin:50px 0 20px 0;
 }
 
+.artigo{
+
+    display:block;
+
+    background:#181818;
+
+    border:1px solid #2A2A2A;
+
+    border-radius:12px;
+
+    padding:22px;
+
+    margin-bottom:16px;
+
+    text-decoration:none;
+
+    transition:.2s;
+
+}
+
+.artigo:hover{
+
+    border-color:#F5C518;
+
+    transform:translateY(-2px);
+
+}
+
+.artigo-titulo{
+
+    color:#F5F5F5;
+
+    font-size:24px;
+
+    font-family:'DM Serif Display', serif;
+
+    margin-bottom:8px;
+
+}
+
+.artigo-subtitulo{
+
+    color:#BDBDBD;
+
+    font-size:16px;
+
+    line-height:1.6;
+
+    margin-bottom:16px;
+
+}
+
+.artigo-link{
+
+    color:#F5C518;
+
+    font-weight:600;
+
+    font-size:15px;
+
+}
+
 .nota{
 
     text-align:right;
@@ -404,6 +466,85 @@ def recomendacao(nome, poster, texto):
         )
 
     st.markdown("</div>", unsafe_allow_html=True)
+
+
+# ==========================================================
+# IMDBE RECOMENDA
+# ==========================================================
+
+
+st.markdown(
+    "<div class='section-imdb'>Opinião</div>",
+    unsafe_allow_html=True
+)
+
+def artigo(titulo, subtitulo, url):
+
+    st.markdown(
+        f"""
+        <a href="{url}" target="_blank" class="artigo">
+
+            <div class="artigo-titulo">
+                {titulo}
+            </div>
+
+            <div class="artigo-subtitulo">
+                {subtitulo}
+            </div>
+
+            <div class="artigo-link">
+                Ler no Substack →
+            </div>
+
+        </a>
+        """,
+        unsafe_allow_html=True
+    )
+
+artigo(
+    "Twin Peaks: De fora pra dentro",
+    "O desenvolvimento do personagem de Laura Palmer em meio ao surrealismo Lynchiano",
+    "https://substack.com/home/post/p-157472679"
+)
+
+artigo(
+    "Em defesa de Euphoria",
+    "Sobre a (péssima) tendência do público em exigir linearidade de séries televisivas",
+    "https://substack.com/home/post/p-157801216"
+)
+
+artigo(
+    "O que é uma obra-prima?",
+    "Uma breve intersecção com cinema: pensamentos sobre meu filme favorito.",
+    "https://substack.com/home/post/p-158067687"
+)
+
+artigo(
+    "O espectro da comédia: De Arrested Development até Trailer Park Boys",
+    "O que te faz dar risada? Trocadilhos, Shakespeare, vídeo-cacetadas ou o Danilo Gentili?",
+    "https://substack.com/home/post/p-157484137"
+)
+
+artigo(
+    "The White Lotus e a fórmula Mike White",
+    "Breve análise da trajetória do showrunner",
+    "https://substack.com/home/post/p-159329921"
+)
+
+
+artigo(
+    "The White Lotus: temporada 3",
+    "Pensamentos sobre uma série cada vez mais ambiciosa",
+    "https://substack.com/home/post/p-157484137"
+)
+
+artigo(
+    "Hacks: O que é se reinventar?",
+    "Uma análise sobre a trajetória de uma das séries de comédia mais aclamadas da década",
+    "https://substack.com/home/post/p-157462817"
+)
+
+
 
 # ==========================================================
 # IMDBE RECOMENDA
