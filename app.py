@@ -6,7 +6,7 @@ import pandas as pd
 # ==========================================================
 
 st.set_page_config(
-    page_title="IMDBe",
+    page_title="IMDBê",
     page_icon="🎬",
     layout="wide"
 )
@@ -268,7 +268,7 @@ header {visibility:hidden;}
 st.markdown(
     """
     <div style="text-align:center;">
-        <span class="title">IMDBe</span>
+        <span class="title">IMDBê</span>
     </div>
     """,
     unsafe_allow_html=True
