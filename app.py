@@ -211,24 +211,94 @@ header {visibility:hidden;}
     margin:50px 0 20px 0;
 }
 
+/* ---------- Artigos ---------- */
+
 .artigo{
+
     background:#181818;
-    border:1px solid #2A2A2A;
-    border-radius:14px;
-    padding:22px;
-    margin-bottom:20px;
+
+    border:1px solid #2C2C2C;
+
+    border-radius:18px;
+
+    padding:26px 30px;
+
+    margin-bottom:22px;
+
+    transition:.25s;
+
+}
+
+.artigo:hover{
+
+    border-color:#F5C518;
+
+    transform:translateY(-2px);
+
+}
+
+.artigo-titulo{
+
+    font-family:'DM Serif Display', serif;
+
+    font-size:32px;
+
+    line-height:1.2;
+
+    margin-bottom:14px;
+
+}
+
+.artigo-titulo a{
+
+    color:#F5F5F5;
+
+    text-decoration:none;
+
+}
+
+.artigo-titulo a:hover{
+
+    color:#F5C518;
+
 }
 
 .artigo-subtitulo{
-    color:#CCCCCC;
-    margin-top:8px;
-    margin-bottom:14px;
-    line-height:1.6;
+
+    color:#BEBEBE;
+
+    font-size:17px;
+
+    line-height:1.7;
+
+    margin-bottom:22px;
+
 }
 
 .artigo-link{
-    color:#F5C518;
-    font-weight:bold;
+
+    display:inline-block;
+
+    background:#F5C518;
+
+    color:#000 !important;
+
+    text-decoration:none;
+
+    font-weight:700;
+
+    padding:10px 18px;
+
+    border-radius:8px;
+
+    transition:.2s;
+
+}
+
+.artigo-link:hover{
+
+    background:#FFD84D;
+
 }
 
 .nota{
@@ -438,27 +508,32 @@ st.markdown(
 
 def artigo(titulo, subtitulo, url):
 
-    html = f"""
-    <div class="artigo">
+    st.markdown(
+        f"""
+        <div class="artigo">
 
-        <div class="artigo-titulo">
-            <a href="{url}" target="_blank">
-                {titulo}
+            <div class="artigo-titulo">
+                <a href="{url}" target="_blank">
+                    {titulo}
+                </a>
+            </div>
+
+            <div class="artigo-subtitulo">
+                {subtitulo}
+            </div>
+
+            <a
+                class="artigo-link"
+                href="{url}"
+                target="_blank"
+            >
+                Ler no Substack →
             </a>
+
         </div>
-
-        <div class="artigo-subtitulo">
-            {subtitulo}
-        </div>
-
-        <div class="artigo-link">
-            Ler no Substack →
-        </div>
-
-    </div>
-    """
-
-    st.markdown(html, unsafe_allow_html=True)
+        """,
+        unsafe_allow_html=True
+    )
 
 artigo(
     "Twin Peaks: De fora pra dentro",
