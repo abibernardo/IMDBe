@@ -346,7 +346,7 @@ def mostrar_lista(df):
                 )
 
 
-def recomendacao(nome, texto):
+def recomendacao(nome, poster, texto):
 
     st.markdown("<div class='review'>", unsafe_allow_html=True)
 
@@ -354,13 +354,9 @@ def recomendacao(nome, texto):
 
     with col1:
 
-        st.markdown(
-            """
-            <div class="poster">
-                Poster
-            </div>
-            """,
-            unsafe_allow_html=True
+        st.image(
+            poster,
+            use_container_width=True
         )
 
     with col2:
@@ -391,17 +387,20 @@ st.markdown(
 
 recomendacao(
     "Industry",
+   "posters/industry.jpg",
     "Forte candidata a série da década, Industry acompanha jovens adultos adentrando o mundo corporativo, se descobrindo, se perdendo e se transformando em meio ao caos do capitalismo tardio. Hiperssexual e impetuosa, Industry vai mudar a forma como você enxerga Televisão."
 )
 
 recomendacao(
     "Atlanta",
-    "Num projeto atemporal que revolucionou a televisão, Donald Glover escreve, dirige e atua numa obra surrealista que deixa Luis Bunuel no chinelo. Atlanta é uma comédia dramática que representa. por meio do surrealismo, como as dinâmicas sociais e raciais interagem com a psique dos negros estadunidenses. Devastadora, hilária e absolutamente brilhante, Donald Glover rompe todas as barreiras de gênero possíveis e cria uma obra indescritível."
+"posters/atlanta.jpg",
+    "Num projeto atemporal que revolucionou a televisão, Donald Glover escreve, dirige e atua numa obra surrealista que deixa Luis Bunuel no chinelo. Atlanta é uma comédia dramática que representa, por meio do surrealismo, como as dinâmicas sociais e raciais interagem com a psique dos negros estadunidenses. Devastadora, hilária e absolutamente brilhante, Donald Glover rompe todas as barreiras de gênero possíveis e cria uma obra indescritível."
 )
 
 recomendacao(
     "Arrested Development",
-    "A comédia mais bem amarrada de todos os tempos, décadas a frente do seu tempo. Pontos vão se conectando brilhantemente ao longo dos episódios, acrescentando camadas ao humor, chegando ao ponto que, um episódio assistido 5 vezes, pode te arrancar risadas por 5 razões completamente diferentes. Algumas sequências são tão inacreditáveis que fazem você se perguntar: 'eles escreveram a temporada toda só para fazer essa piada?'"
+"posters/arrested development 2.jpeg",
+    "A comédia mais bem amarrada de todos os tempos, décadas a frente do seu tempo. Pontos vão se conectando brilhantemente ao longo dos episódios e acrescentando camadas ao humor, chegando a um ponto onde um episódio assistido 5 vezes, pode te arrancar risadas por 5 razões completamente diferentes. Algumas sequências são tão inacreditáveis que fazem você se perguntar: 'eles escreveram a temporada toda só para fazer essa piada?'"
 )
 
 
