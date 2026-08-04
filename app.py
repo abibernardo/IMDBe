@@ -507,25 +507,18 @@ st.markdown(
 )
 
 def artigo(titulo, subtitulo, url):
-
     st.markdown(
         f"""
         <div class="artigo">
-
             <div class="artigo-titulo">
-                <a href="{url}" target="_blank">
-                    {titulo}
-                </a>
+                <a href="{url}" target="_blank">{titulo}</a>
             </div>
-
             <div class="artigo-subtitulo">
                 {subtitulo}
             </div>
-
             <a class="artigo-link" href="{url}" target="_blank">
                 Ler no Substack →
             </a>
-
         </div>
         """,
         unsafe_allow_html=True
