@@ -72,10 +72,27 @@ header {visibility:hidden;}
 /* ---------- Cabeçalho ---------- */
 
 .title{
-    text-align:center;
-    font-size:58px;
-    font-weight:800;
-    margin-bottom:0;
+
+    display:inline-block;
+
+    background:#F5C518;
+
+    color:#000;
+
+    padding:6px 16px;
+
+    border-radius:8px;
+
+    font-family:'Inter', sans-serif;
+
+    font-size:54px;
+
+    font-weight:900;
+
+    letter-spacing:-2px;
+
+    box-shadow:0 2px 10px rgba(0,0,0,.35);
+
 }
 
 .subtitle{
@@ -127,6 +144,22 @@ header {visibility:hidden;}
     margin-bottom:10px;
 
     font-size:17px;
+
+}
+
+.nota-top{
+
+    color:#FFD54F;
+
+    font-size:14px;
+
+    font-weight:700;
+
+    margin-bottom:4px;
+
+    text-transform:uppercase;
+
+    letter-spacing:1px;
 
 }
 
@@ -232,9 +265,15 @@ header {visibility:hidden;}
 # ==========================================================
 
 st.markdown(
-    "<div class='title'>IMDBe</div>",
+    """
+    <div style="text-align:center;">
+        <span class="title">IMDBe</span>
+    </div>
+    """,
     unsafe_allow_html=True
 )
+
+st.divider()
 
 st.markdown(
     "<div class='subtitle'>Arquivo Pessoal de Televisão do Be</div>",
@@ -251,7 +290,7 @@ st.markdown(
         font-size:18px;
         line-height:1.8;
     ">
-        O <b>IMDBe</b> é o arquivo pessoal de séries do crítico Bernardo Abib, reconhecido internacionalmente pelo seu olhar sensível à arte, conhecimento profundo da história da televisão, gosto sofisticado e humildade.
+        O <b>IMDBe</b> é o arquivo pessoal de séries do crítico Bernardo Abib, reconhecido internacionalmente pelo seu conhecimento profundo da história da televisão, gosto sofisticado, e humildade.
     </div>
     """,
     unsafe_allow_html=True
@@ -282,11 +321,8 @@ def mostrar_lista(df):
 
     for _, serie in df.iterrows():
 
-        col1, col2 = st.columns([6,1])
-
         nota = serie["Your Rating"]
 
-        # Cor diferente para 10/10
         if pd.notna(nota):
 
             nota = int(nota)
@@ -303,47 +339,28 @@ def mostrar_lista(df):
             else:
                 classe = "item"
 
+            nota_html = f'<div class="nota-top">{nota}/10</div>'
+
         else:
+
             classe = "item"
+            nota_html = ""
 
-        with col1:
-
-            st.markdown(
-                f"""
-                <div class="{classe}">
-    <a href="{serie['URL']}" target="_blank"
-       style="
-            color:inherit;
-            text-decoration:none;
-            display:block;
-            width:100%;
-       ">
-        {serie["Title"]}
-    </a>
-</div>
-                """,
-                unsafe_allow_html=True
-            )
-
-        with col2:
-
-            if pd.notna(nota):
-
-                st.markdown(
-                    f"""
-                    <div class="nota">
-                        {int(nota)}/10
-                    </div>
-                    """,
-                    unsafe_allow_html=True
-                )
-
-            else:
-
-                st.markdown(
-                    '<div class="nota">—</div>',
-                    unsafe_allow_html=True
-                )
+        st.markdown(
+            f"""
+            <div class="{classe}">
+                {nota_html}
+                <a href="{serie['URL']}" target="_blank"
+                   style="
+                        color:inherit;
+                        text-decoration:none;
+                   ">
+                    {serie["Title"]}
+                </a>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
 
 
 def recomendacao(nome, poster, texto):
