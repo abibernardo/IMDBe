@@ -409,10 +409,17 @@ def recomendacao(nome, poster, texto):
 # IMDBE RECOMENDA
 # ==========================================================
 
-st.markdown(
-    "<div class='section'>⭐ IMDBe recomenda</div>",
-    unsafe_allow_html=True
-)
+st.markdown("""
+<div class="section-imdb">
+    ⭐ IMDBê Recomenda ⭐
+</div>
+""", unsafe_allow_html=True)
+
+st.markdown("""
+<div class="section-imdb">
+    Acompanhando
+</div>
+""", unsafe_allow_html=True)
 
 recomendacao(
     "Industry",
