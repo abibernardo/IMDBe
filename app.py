@@ -277,10 +277,10 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-st.markdown(
+"""st.markdown(
     "<div class='hero'>Banner da série em destaque</div>",
     unsafe_allow_html=True
-)
+)"""
 
 # ==========================================================
 # FUNÇÕES
@@ -403,14 +403,15 @@ recomendacao(
 )
 
 recomendacao(
-    "Arrested Development",
-    "A comédia mais bem escrita de todos os tempos, décadas a frente do seu tempo. A narrativa vai se amarrando de forma brilhante ao longo dos episódios, acrescentando camadas ao humor, chegando ao ponto que, um episódio assistido 5 vezes, pode te arrancar risadas por 5 razões completamente diferentes. Algumas sequências são tão inacreditáveis que fazem você se perguntar: 'eles escreveram a temporada toda só para fazer essa piada?'"
-)
-
-recomendacao(
     "Atlanta",
     "Num projeto atemporal que revolucionou a televisão, Donald Glover escreve, dirige e atua numa obra surrealista que deixa Luis Bunuel no chinelo. Atlanta é uma comédia dramática que representa. por meio do surrealismo, como as dinâmicas sociais e raciais interagem com a psique dos negros estadunidenses. Devastadora, hilária e absolutamente brilhante, Donald Glover rompe todas as barreiras de gênero possíveis e cria uma obra indescritível."
 )
+
+recomendacao(
+    "Arrested Development",
+    "A comédia mais bem amarrada de todos os tempos, décadas a frente do seu tempo. Pontos vão se conectando brilhantemente ao longo dos episódios, acrescentando camadas ao humor, chegando ao ponto que, um episódio assistido 5 vezes, pode te arrancar risadas por 5 razões completamente diferentes. Algumas sequências são tão inacreditáveis que fazem você se perguntar: 'eles escreveram a temporada toda só para fazer essa piada?'"
+)
+
 
 # ==========================================================
 # ACOMPANHANDO
