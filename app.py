@@ -411,7 +411,7 @@ def recomendacao(nome, poster, texto):
 
 st.markdown("""
 <div class="section-imdb">
-    ⭐ IMDBê Recomenda ⭐
+    ⭐ IMDBe Recomenda ⭐
 </div>
 """, unsafe_allow_html=True)
 
