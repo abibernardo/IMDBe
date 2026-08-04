@@ -497,26 +497,27 @@ st.markdown(
 
 def artigo(titulo, subtitulo, url):
 
-    st.markdown(
-        f"""
-        <div class="artigo">
-            <div class="artigo-titulo">
-                <a href="{url}" target="_blank" class="artigo-link-titulo">
-                    {titulo}
-                </a>
-            </div>
+    html = f"""
+    <div class="artigo">
 
-            <div class="artigo-subtitulo">
-                {subtitulo}
-            </div>
-
-            <div class="artigo-link">
-                Ler no Substack →
-            </div>
+        <div class="artigo-titulo">
+            <a href="{url}" target="_blank">
+                {titulo}
+            </a>
         </div>
-        """,
-        unsafe_allow_html=True
-    )
+
+        <div class="artigo-subtitulo">
+            {subtitulo}
+        </div>
+
+        <div class="artigo-link">
+            Ler no Substack →
+        </div>
+
+    </div>
+    """
+
+    st.markdown(html, unsafe_allow_html=True)
 
 artigo(
     "Twin Peaks: De fora pra dentro",
