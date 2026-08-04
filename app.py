@@ -415,12 +415,6 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-st.markdown("""
-<div class="section-imdb">
-    Acompanhando
-</div>
-""", unsafe_allow_html=True)
-
 recomendacao(
     "Industry",
    "posters/industry.jpg",
