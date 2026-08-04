@@ -10,8 +10,7 @@ st.set_page_config(
     page_icon="🎬",
     layout="wide"
 )
-st.write("Tema:", st.get_option("theme.base"))
-st.write("Fundo:", st.get_option("theme.backgroundColor"))
+
 # ==========================================================
 # DADOS
 # ==========================================================
@@ -69,10 +68,6 @@ header {visibility:hidden;}
     padding-bottom:3rem;
 }
 
-html, body, [data-testid="stAppViewContainer"]{
-    background:#0F1117;
-    color:white;
-}
 
 /* ---------- Cabeçalho ---------- */
 
@@ -278,10 +273,6 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-"""st.markdown(
-    "<div class='hero'>Banner da série em destaque</div>",
-    unsafe_allow_html=True
-)"""
 
 # ==========================================================
 # FUNÇÕES
