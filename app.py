@@ -6,7 +6,7 @@ import pandas as pd
 # ==========================================================
 
 st.set_page_config(
-    page_title="IMDBê",
+    page_title="IMDBe",
     page_icon="🎬",
     layout="wide"
 )
@@ -39,7 +39,7 @@ def carregar_lista(url):
     )
 
 
-    
+
 df_finalizadas = carregar_lista(
     "https://raw.githubusercontent.com/abibernardo/IMDBe/refs/heads/main/series/finalizadas.csv"
 )
@@ -200,6 +200,17 @@ header {visibility:hidden;}
 
 }
 
+.section-imdb{
+    display:inline-block;
+    font-family:'Inter', sans-serif;
+    font-size:15px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:2px;
+    color:#F5C518;
+    margin:50px 0 20px 0;
+}
+
 .nota{
 
     text-align:right;
@@ -268,7 +279,7 @@ header {visibility:hidden;}
 st.markdown(
     """
     <div style="text-align:center;">
-        <span class="title">IMDBê</span>
+        <span class="title">IMDBe</span>
     </div>
     """,
     unsafe_allow_html=True
@@ -426,10 +437,11 @@ recomendacao(
 # ACOMPANHANDO
 # ==========================================================
 
-st.markdown(
-    "<div class='section'>📺 Acompanhando</div>",
-    unsafe_allow_html=True
-)
+st.markdown("""
+<div class="section-imdb">
+    Acompanhando
+</div>
+""", unsafe_allow_html=True)
 
 mostrar_lista(df_assistindo)
 
@@ -437,10 +449,11 @@ mostrar_lista(df_assistindo)
 # FINALIZADAS
 # ==========================================================
 
-st.markdown(
-    "<div class='section'>✅ Finalizadas</div>",
-    unsafe_allow_html=True
-)
+st.markdown("""
+<div class="section-imdb">
+    Acompanhando
+</div>
+""", unsafe_allow_html=True)
 
 mostrar_lista(df_finalizadas)
 
@@ -448,9 +461,10 @@ mostrar_lista(df_finalizadas)
 # ABANDONADAS
 # ==========================================================
 
-st.markdown(
-    "<div class='section'>🛑 Abandonadas</div>",
-    unsafe_allow_html=True
-)
+st.markdown("""
+<div class="section-imdb">
+    Acompanhando
+</div>
+""", unsafe_allow_html=True)
 
 mostrar_lista(df_abandonadas)
