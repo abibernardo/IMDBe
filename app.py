@@ -213,23 +213,17 @@ header {visibility:hidden;}
 
 .artigo{
 
-    display:block;
-
-    background:#181818;
+    background:#171717;
 
     border:1px solid #2A2A2A;
 
-    border-radius:14px;
+    border-radius:16px;
 
-    padding:22px;
+    padding:26px 28px;
 
-    margin-bottom:16px;
+    margin-bottom:20px;
 
-    text-decoration:none !important;
-
-    color:inherit !important;
-
-    transition:all .2s ease;
+    transition:all .25s ease;
 
 }
 
@@ -239,7 +233,7 @@ header {visibility:hidden;}
 
     background:#1D1D1D;
 
-    transform:translateY(-2px);
+    box-shadow:0 8px 24px rgba(0,0,0,.35);
 
 }
 
@@ -249,19 +243,33 @@ header {visibility:hidden;}
 
     font-size:30px;
 
-    color:#F5F5F5;
+    line-height:1.2;
 
-    margin-bottom:8px;
+    margin-bottom:10px;
+
+}
+
+.artigo-titulo a{
+
+    color:#F5F5F5 !important;
+
+    text-decoration:none !important;
+
+}
+
+.artigo-titulo a:hover{
+
+    color:#F5C518 !important;
 
 }
 
 .artigo-subtitulo{
 
+    color:#B8B8B8;
+
     font-size:16px;
 
-    color:#AFAFAF;
-
-    line-height:1.6;
+    line-height:1.7;
 
     margin-bottom:18px;
 
@@ -269,14 +277,19 @@ header {visibility:hidden;}
 
 .artigo-link{
 
+    display:inline-block;
+
     color:#F5C518;
+
+    font-size:14px;
 
     font-weight:700;
 
-    font-size:15px;
+    letter-spacing:1px;
+
+    text-transform:uppercase;
 
 }
-
 .nota{
 
     text-align:right;
@@ -487,7 +500,6 @@ def artigo(titulo, subtitulo, url):
     st.markdown(
         f"""
         <div class="artigo">
-
             <div class="artigo-titulo">
                 <a href="{url}" target="_blank" class="artigo-link-titulo">
                     {titulo}
@@ -501,7 +513,6 @@ def artigo(titulo, subtitulo, url):
             <div class="artigo-link">
                 Ler no Substack →
             </div>
-
         </div>
         """,
         unsafe_allow_html=True
