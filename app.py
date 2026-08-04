@@ -219,15 +219,17 @@ header {visibility:hidden;}
 
     border:1px solid #2A2A2A;
 
-    border-radius:12px;
+    border-radius:14px;
 
     padding:22px;
 
     margin-bottom:16px;
 
-    text-decoration:none;
+    text-decoration:none !important;
 
-    transition:.2s;
+    color:inherit !important;
+
+    transition:all .2s ease;
 
 }
 
@@ -235,17 +237,19 @@ header {visibility:hidden;}
 
     border-color:#F5C518;
 
+    background:#1D1D1D;
+
     transform:translateY(-2px);
 
 }
 
 .artigo-titulo{
 
-    color:#F5F5F5;
-
-    font-size:24px;
-
     font-family:'DM Serif Display', serif;
+
+    font-size:30px;
+
+    color:#F5F5F5;
 
     margin-bottom:8px;
 
@@ -253,13 +257,13 @@ header {visibility:hidden;}
 
 .artigo-subtitulo{
 
-    color:#BDBDBD;
-
     font-size:16px;
+
+    color:#AFAFAF;
 
     line-height:1.6;
 
-    margin-bottom:16px;
+    margin-bottom:18px;
 
 }
 
@@ -267,7 +271,7 @@ header {visibility:hidden;}
 
     color:#F5C518;
 
-    font-weight:600;
+    font-weight:700;
 
     font-size:15px;
 
@@ -482,10 +486,11 @@ def artigo(titulo, subtitulo, url):
 
     st.markdown(
         f"""
-        <a href="{url}" target="_blank" class="artigo">
-
+        <div class="artigo">
             <div class="artigo-titulo">
-                {titulo}
+                <a href="{url}" target="_blank" class="artigo-link-titulo">
+                    {titulo}
+                </a>
             </div>
 
             <div class="artigo-subtitulo">
@@ -495,8 +500,7 @@ def artigo(titulo, subtitulo, url):
             <div class="artigo-link">
                 Ler no Substack →
             </div>
-
-        </a>
+        </div>
         """,
         unsafe_allow_html=True
     )
@@ -504,44 +508,44 @@ def artigo(titulo, subtitulo, url):
 artigo(
     "Twin Peaks: De fora pra dentro",
     "O desenvolvimento do personagem de Laura Palmer em meio ao surrealismo Lynchiano",
-    "https://substack.com/home/post/p-157472679"
+    "https://open.substack.com/pub/abibernardo/p/sobre-twin-peaks-de-fora-pra-dentro?r=55w229&utm_campaign=post&utm_medium=web"
 )
 
 artigo(
     "Em defesa de Euphoria",
     "Sobre a (péssima) tendência do público em exigir linearidade de séries televisivas",
-    "https://substack.com/home/post/p-157801216"
+    "https://open.substack.com/pub/abibernardo/p/em-defesa-de-euphoria?r=55w229&utm_campaign=post&utm_medium=web"
 )
 
 artigo(
     "O que é uma obra-prima?",
     "Uma breve intersecção com cinema: pensamentos sobre meu filme favorito.",
-    "https://substack.com/home/post/p-158067687"
+    "https://open.substack.com/pub/abibernardo/p/o-que-e-uma-obra-prima?r=55w229&utm_campaign=post&utm_medium=web"
 )
 
 artigo(
     "O espectro da comédia: De Arrested Development até Trailer Park Boys",
     "O que te faz dar risada? Trocadilhos, Shakespeare, vídeo-cacetadas ou o Danilo Gentili?",
-    "https://substack.com/home/post/p-157484137"
+    "https://open.substack.com/pub/abibernardo/p/de-arrested-development-ate-trailer?r=55w229&utm_campaign=post&utm_medium=web"
 )
 
 artigo(
     "The White Lotus e a fórmula Mike White",
     "Breve análise da trajetória do showrunner",
-    "https://substack.com/home/post/p-159329921"
+    "https://open.substack.com/pub/abibernardo/p/qual-o-tempo-do-talento?r=55w229&utm_campaign=post&utm_medium=web"
 )
 
 
 artigo(
     "The White Lotus: temporada 3",
     "Pensamentos sobre uma série cada vez mais ambiciosa",
-    "https://substack.com/home/post/p-157484137"
+    "https://open.substack.com/pub/abibernardo/p/sobre-the-white-lotus-egos-que-nutrem?r=55w229&utm_campaign=post&utm_medium=web"
 )
 
 artigo(
     "Hacks: O que é se reinventar?",
     "Uma análise sobre a trajetória de uma das séries de comédia mais aclamadas da década",
-    "https://substack.com/home/post/p-157462817"
+    "https://open.substack.com/pub/abibernardo/p/sobre-hacks-o-que-e-se-reinventar?r=55w229&utm_campaign=post&utm_medium=web"
 )
 
 
