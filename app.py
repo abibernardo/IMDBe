@@ -10,7 +10,8 @@ st.set_page_config(
     page_icon="🎬",
     layout="wide"
 )
-
+st.write("Tema:", st.get_option("theme.base"))
+st.write("Fundo:", st.get_option("theme.backgroundColor"))
 # ==========================================================
 # DADOS
 # ==========================================================
