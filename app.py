@@ -19,7 +19,7 @@ st.set_page_config(
 def carregar_lista(url):
 
     df = pd.read_csv(url)
-
+    df["Your Rating"] = pd.to_numeric(df["Your Rating"], errors="coerce")
     return (
         df[
             [
@@ -39,6 +39,7 @@ def carregar_lista(url):
     )
 
 
+    
 df_finalizadas = carregar_lista(
     "https://raw.githubusercontent.com/abibernardo/IMDBe/refs/heads/main/series/finalizadas.csv"
 )
