@@ -39,7 +39,7 @@ def carregar_lista(url):
     )
 
 
-
+    
 df_finalizadas = carregar_lista(
     "https://raw.githubusercontent.com/abibernardo/IMDBe/refs/heads/main/series/finalizadas.csv"
 )
@@ -322,35 +322,45 @@ def mostrar_lista(df):
 
     for _, serie in df.iterrows():
 
-        nota = pd.to_numeric(serie["Your Rating"], errors="coerce")
-
-        classe = "item"
+        nota = serie["Your Rating"]
 
         if pd.notna(nota):
+
             nota = int(nota)
 
             if nota == 10:
-                classe += " masterpiece"
-            elif nota == 9:
-                classe += " masterpiece-silver"
-            elif nota == 8:
-                classe += " masterpiece-bronze"
+                classe = "item masterpiece"
 
-            nota_html = f'<div class="nota-top">★ {nota}/10</div>'
+            elif nota == 9:
+                classe = "item masterpiece-silver"
+
+            elif nota == 8:
+                classe = "item masterpiece-bronze"
+
+            else:
+                classe = "item"
+
+            nota_html = f'<div class="nota-top">{nota}/10</div>'
 
         else:
+
+            classe = "item"
             nota_html = ""
 
         st.markdown(
             f"""
             <div class="{classe}">
                 {nota_html}
-                <a href="{serie['URL']}" target="_blank" style="color:inherit;text-decoration:none;">
-                    {serie['Title']}
+                <a href="{serie['URL']}" target="_blank"
+                   style="
+                        color:inherit;
+                        text-decoration:none;
+                   ">
+                    {serie["Title"]}
                 </a>
             </div>
             """,
-            unsafe_allow_html=True,
+            unsafe_allow_html=True
         )
 
 
