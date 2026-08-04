@@ -451,7 +451,7 @@ mostrar_lista(df_assistindo)
 
 st.markdown("""
 <div class="section-imdb">
-    Acompanhando
+    Finalizadas
 </div>
 """, unsafe_allow_html=True)
 
@@ -463,7 +463,7 @@ mostrar_lista(df_finalizadas)
 
 st.markdown("""
 <div class="section-imdb">
-    Acompanhando
+    Abandonadas
 </div>
 """, unsafe_allow_html=True)
 
