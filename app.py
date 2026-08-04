@@ -508,32 +508,38 @@ st.markdown(
 
 def artigo(titulo, subtitulo, url):
 
+    st.markdown("<div class='artigo'>", unsafe_allow_html=True)
+
     st.markdown(
         f"""
-        <div class="artigo">
-
-            <div class="artigo-titulo">
-                <a href="{url}" target="_blank">
-                    {titulo}
-                </a>
-            </div>
-
-            <div class="artigo-subtitulo">
-                {subtitulo}
-            </div>
-
-            <a
-                class="artigo-link"
-                href="{url}"
-                target="_blank"
-            >
-                Ler no Substack →
-            </a>
-
+        <div class="artigo-titulo">
+            <a href="{url}" target="_blank">{titulo}</a>
         </div>
         """,
         unsafe_allow_html=True
     )
+
+    st.markdown(
+        f"""
+        <div class="artigo-subtitulo">
+            {subtitulo}
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+    st.markdown(
+        f"""
+        <a class="artigo-link"
+           href="{url}"
+           target="_blank">
+            Ler no Substack →
+        </a>
+        """,
+        unsafe_allow_html=True
+    )
+
+    st.markdown("</div>", unsafe_allow_html=True)
 
 artigo(
     "Twin Peaks: De fora pra dentro",
