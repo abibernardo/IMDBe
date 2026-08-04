@@ -211,30 +211,24 @@ header {visibility:hidden;}
     margin:50px 0 20px 0;
 }
 
-.artigo-titulo{
-
-    font-family:'DM Serif Display', serif;
-
-    font-size:30px;
-
-    line-height:1.2;
-
-    margin-bottom:10px;
-
+.artigo{
+    background:#181818;
+    border:1px solid #2A2A2A;
+    border-radius:14px;
+    padding:22px;
+    margin-bottom:20px;
 }
 
-.artigo-titulo a{
-
-    color:#F5F5F5;
-
-    text-decoration:none;
-
+.artigo-subtitulo{
+    color:#CCCCCC;
+    margin-top:8px;
+    margin-bottom:14px;
+    line-height:1.6;
 }
 
-.artigo-titulo a:hover{
-
+.artigo-link{
     color:#F5C518;
-
+    font-weight:bold;
 }
 
 .nota{
